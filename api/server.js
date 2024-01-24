@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const Todo = require('./models/Todo');
 
 const app = express();
 
@@ -10,5 +11,20 @@ app.use(cors());
 mongoose.connect("mongodb+srv://booking:booking123@cluster0.ieapskx.mongodb.net/")
     .then(() => console.log("Connected to DB"))
     .catch(console.error);
+
+app.get('/todos', async (req,res) => {
+    const todos = await Todo.find();
+
+    res.json(todos);
+});
+
+app.post('/todo/new',  (req,res) => {
+    const todo = new Todo({
+        text: req.body.text
+    });
+
+    todo.save();
+    res.json(todo);
+});
 
 app.listen(3001, () => console.log("Server has started on port 3001"));
