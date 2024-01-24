@@ -6,5 +6,13 @@ POST http://localhost:3001/todo/new
 Content-Type: application/json
 
 {
-    "text": "Get the task done"
+    "text": "I am in office"
 }
+
+###
+
+DELETE http://localhost:3001/todo/delete/65b15924a5344833d98f186b
+
+###
+
+PUT http://localhost:3001/todo/complete/65b1543da5344833d98f1865
